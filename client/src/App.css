@@ -1,0 +1,155 @@
+:root {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+  --border: #27272a;
+  --primary: #fafafa;
+  --primary-foreground: #18181b;
+  --radius: 0.5rem;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 320px;
+  border-right: 1px solid var(--border);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background-color: #0c0c0e;
+}
+.sidebar-header h2 { font-size: 1.125rem; font-weight: 600; margin-bottom: 4px; }
+.sidebar-header p { font-size: 0.8rem; color: var(--muted-foreground); }
+
+/* Controls */
+.control-group {
+  border: 1px solid var(--border);
+  padding: 16px;
+  border-radius: var(--radius);
+  background-color: var(--background);
+}
+label { font-size: 0.875rem; font-weight: 500; color: var(--muted-foreground); margin-bottom: 8px; display: block; }
+
+input[type="file"], select, input[type="text"] {
+  width: 100%;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  outline: none;
+  margin-bottom: 12px;
+}
+input[type="text"]:focus, select:focus { border-color: #52525b; }
+
+/* Buttons */
+button {
+  width: 100%;
+  padding: 10px;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+}
+.primary-btn { background-color: var(--primary); color: var(--primary-foreground); }
+.secondary-btn { background-color: var(--muted); color: var(--foreground); border: 1px solid var(--border); }
+button:hover:not(:disabled) { opacity: 0.9; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+.icon-btn { width: auto; padding: 10px 24px; }
+
+/* Status Text */
+.status-text { font-size: 0.8rem; color: var(--muted-foreground); margin-top: 12px; text-align: center; }
+
+/* Main Chat */
+.chat-main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.chat-box {
+  flex-grow: 1;
+  padding: 40px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 120px;
+}
+.message { max-width: 80%; line-height: 1.6; font-size: 0.95rem; }
+.user-msg {
+  align-self: flex-end;
+  background-color: var(--muted);
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+.ai-msg { align-self: flex-start; padding: 0 20px; }
+.thinking { color: var(--muted-foreground); animation: pulse 1.5s infinite; }
+
+/* Input Area */
+.input-area {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 24px 40px;
+  background: linear-gradient(to top, var(--background) 80%, transparent);
+  display: flex;
+  gap: 12px;
+}
+.input-area input { margin-bottom: 0; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Sidebar Split Layout */
+.sidebar { padding: 0; display: flex; flex-direction: column; }
+.sidebar-section { padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+
+/* Chat List Area (Scrollable) */
+.chat-list-section { flex-grow: 1; overflow-y: auto; border-bottom: 1px solid var(--border); }
+.new-chat-btn { margin-bottom: 8px; }
+.session-list { display: flex; flex-direction: column; gap: 4px; }
+.session-item {
+  display: flex; align-items: center; gap: 8px; padding: 10px 12px;
+  border-radius: var(--radius); cursor: pointer; color: var(--muted-foreground);
+  font-size: 0.85rem; transition: background 0.2s;
+}
+.session-item:hover { background-color: var(--muted); color: var(--foreground); }
+.session-item.active { background-color: var(--muted); color: var(--foreground); font-weight: 500;}
+.session-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Settings Area (Fixed at bottom) */
+.settings-section { flex-shrink: 0; background-color: #0c0c0e; }
+.control-group.mini { padding: 12px; }
+.control-group.mini input, .control-group.mini select, .control-group.mini button { margin-bottom: 8px; padding: 8px; font-size: 0.8rem; }
+
+/* Empty State */
+.empty-state {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  height: 100%; color: var(--muted-foreground); text-align: center;
+}
+.empty-state h2 { color: var(--foreground); margin-bottom: 8px; }
