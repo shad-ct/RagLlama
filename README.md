@@ -30,7 +30,8 @@ Before running this project, you need the underlying infrastructure installed on
 2. **[Ollama](https://ollama.com/)** (Running locally on port `11434`)
    * *Required initial model:* Open your terminal and run `ollama pull nomic-embed-text` (used for the math/vector embeddings).
 3. **PostgreSQL + `pgvector`**
-   * **Option A (Docker - Recommended):** ```bash
+   * **Option A (Docker - Recommended):** 
+   ```bash
      docker run --name brain-db -e POSTGRES_PASSWORD=root -p 5432:5432 -d pgvector/pgvector:pg18
      ```
    * **Option B (Native Windows Compile):** You must have PostgreSQL 18 installed, along with Microsoft C++ Build Tools, and manually compile the `pgvector` extension against your Postgres headers.
