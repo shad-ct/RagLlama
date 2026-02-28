@@ -8,12 +8,12 @@ A 100% local, fully private Retrieval-Augmented Generation (RAG) AI application.
 
 
 
-## 🧠 What It Is
+## What It Is
 RagLlama bridges the gap between your local file system and open-weight AI models. It ingests your documents, slices them into context-aware chunks, maps them into a 768-dimensional vector space using mathematically calculated embeddings, and stores them in a native PostgreSQL vault. 
 
 When you ask a question, the system searches the vault using **Cosine Similarity**, injects the most relevant context into the LLM's prompt, and generates a highly accurate, hallucination-free response.
 
-## ✨ Features
+## Features
 * **Absolute Privacy:** Runs entirely on your local hardware. No API keys, no cloud servers.
 * **Smart File Ingestion:** Upload `.txt` or `.pdf` files directly via the UI. The backend automatically parses, chunks, and vectorizes the text on the fly.
 * **Relational Chat History:** Features isolated chat sessions. Short-term conversational memory is injected into the prompt alongside long-term document memory.
@@ -22,7 +22,7 @@ When you ask a question, the system searches the vault using **Cosine Similarity
 
 ---
 
-## 🛠️ Prerequisites (The "What")
+## Prerequisites (The "What")
 
 Before running this project, you need the underlying infrastructure installed on your machine:
 
@@ -37,7 +37,7 @@ Before running this project, you need the underlying infrastructure installed on
 
 ---
 
-## 🚀 Installation & Setup (The "How")
+## Installation & Setup (The "How")
 
 ### 1. Database Initialization
 Ensure your Postgres server is running. Open your `psql` terminal (`psql -U postgres -h localhost`) and run:
@@ -71,7 +71,7 @@ npm run dev
 
 The UI will be accessible at http://localhost:5173.
 
-## 🏗️ Technical Architecture
+## Technical Architecture
 
 * **The Slicer Engine:** Uses `@langchain/textsplitters` (`RecursiveCharacterTextSplitter`) to chunk documents with a 200-character overlap. This prevents the "smoothie effect" and ensures context isn't destroyed when paragraphs are sliced.
 * **The Vector Vault:** Uses raw `pg` (`node-postgres`) queries. `pgvector` utilizes the `<=>` operator to calculate Cosine Distance at lightning speed.
