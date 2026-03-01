@@ -43,9 +43,24 @@ Before running this project, you need the underlying infrastructure installed on
 ### 1. Database Initialization
 Ensure your Postgres server is running. Open your `psql` terminal (`psql -U postgres -h localhost`) and run:
 ```sql
+
+-- 1. Create your isolated database
 CREATE DATABASE brain_db;
+
+-- 2. Connect to it
 \c brain_db
+
+-- 3. Turn on the vector engine (This will now work!)
 CREATE EXTENSION vector;
+
+-- 4. Build the architecture
+CREATE TABLE memory_chunks (
+    id SERIAL PRIMARY KEY,
+    source_file VARCHAR(255),  -- e.g., "diary_feb_2026.txt"
+    chunk_text TEXT NOT NULL,  -- The actual sliced paragraph
+    embedding VECTOR(768)      -- The exact size of a nomic-embed-text vector
+
+);
 ```
 *(Note: The Node.js backend handles all table creations and auto-migrations for you.)*
 
